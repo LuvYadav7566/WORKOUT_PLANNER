@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Planner</title>
+</head>
+<body>
+    <h2>Workout Planner</h2>
+    <form action="/add" method="post">
+        <input type="text" name="name" placeholder="Exercise Name" required>
+        <input type="number" name="sets" placeholder="Sets" required>
+        <input type="number" name="reps" placeholder="Reps" required>
+        <button type="submit">Add Exercise</button>
+    </form>
+    
+    <h3>Workout List</h3>
+    <ul>
+        {% for exercise in exercises %}
+            <li>
+                {{ exercise[1] }} - {{ exercise[2] }} sets x {{ exercise[3] }} reps
+                {% if exercise[4] == 0 %}
+                    <a href="/complete/{{ exercise[0] }}">Mark Completed</a>
+                {% else %}
+                    ✅ Completed
+                {% endif %}
+                <a href="/delete/{{ exercise[0] }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
